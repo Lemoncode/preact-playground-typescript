@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+dist/
+es/
+gallery/dist/
+gallery/
+lib/
+*.orig
+.idea/
+bundle.js
+package-lock.json
+.awcache
