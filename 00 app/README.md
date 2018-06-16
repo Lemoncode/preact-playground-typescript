@@ -2,7 +2,7 @@
 
 Let's create a hello world preact application
 
-# Preqreuisites
+# Preqrequisites
 
 TODO: Add install node version etc...
 
@@ -18,7 +18,7 @@ npm init
 
 - Webpack
 
-```
+```bash
 npm install webpack webpack-cli webpack-dev-server --save-dev
 ```
 
