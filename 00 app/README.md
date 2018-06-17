@@ -2,9 +2,10 @@
 
 Let's create a hello world preact application
 
-# Preqrequisites
+# Prerequisites
 
-TODO: Add install node version etc...
+Ensure you have installed nodejs at least version 8.1.1.
+
 
 # Steps
 
