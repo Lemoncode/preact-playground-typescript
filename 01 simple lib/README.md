@@ -113,7 +113,7 @@ export default {
     ],
   },
   // For development https://webpack.js.org/configuration/devtool/#for-development
-  /*devtool: 'inline-source-map',*/
+  devtool: 'source-map',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -149,7 +149,7 @@ _./gallery/index.html_
   </div>
 </body>
 
-<script src="../build/dist/simple-lib-0.0.1.js"></script>
+<script src="../build/dist/simple-lib-1.0.0.js"></script>
 <script src="./main.js"></script>
 
 </html>
@@ -181,10 +181,23 @@ _./package.json_
 +    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --copy-files --ignore spec.js,test.js",
 +    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack --mode=development",
 +    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --mode=production",
-+    "gallery": "npm run prepublish && copyfiles ./dist/*.js gallery && webpack-dev-server --mode=development --content-base gallery/"
-
++    "gallery": "npm run prepublish && webpack-dev-server --mode=development --openPage '/gallery'"
   },
 ```
 
+> As an excercise you could build a _gallery-lite_ command that only makes the UMD build
+faster performance.
+
+- Let's give a try making a build
+
+```bash
+npm run build
+```
+
+- Le'ts run the gallery
+
+```bash
+npm run gallery
+```
 
 

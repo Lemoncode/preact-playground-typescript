@@ -1,3 +1,9 @@
-import { h, Component } from 'preact';
+import { h, Component, render } from 'preact';
 
-export const Hello =  () => <h1>Hello</h1>
+const Hello =  () => <h1>Hello</h1>
+
+export const instantiateHello = (domElement : HTMLElement) => {
+  render((
+    <Hello/>
+  ), domElement);
+}

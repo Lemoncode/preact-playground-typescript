@@ -1,9 +1,12 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+const NODE_ENV = process.env.NODE_ENV;
 
 const basePath = __dirname;
+const version = JSON.stringify(process.env.npm_package_version).replace(/"/g, '');
+const filename = `simple-lib-${version}${NODE_ENV === 'production' ? '.min' : ''}.js`;
 
 export default {
   context: path.join(basePath, 'src'),
@@ -12,14 +15,17 @@ export default {
   },
 
   entry: {
-    app: './main.tsx',
-    vendor: [
-      'preact'
-    ],
+    app: './hello.tsx',
   },
   output: {
-    path: path.join(basePath, 'dist'),
-    filename: '[chunkhash].[name].js',
+    path: path.join(basePath, 'build/dist'),
+    filename,
+    library: {
+      root: 'SimpleLib',
+      amd: 'simple-lib',
+      commonjs: 'simple-lib',
+    },
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -43,7 +49,8 @@ export default {
             loader: 'sass-loader',
           },
         ],
-      }, {
+      }, 
+      {
         test: /\.css$/,
         include: /node_modules/,
         use: [
@@ -54,22 +61,12 @@ export default {
     ],
   },
   // For development https://webpack.js.org/configuration/devtool/#for-development
-  devtool: 'inline-source-map',
-  devServer: {
-    port: 8080,
-  },
+  devtool: 'source-map',
   plugins: [
-    //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
-
-    new HtmlWebpackPlugin({
-      filename: 'index.html', //Name of file in ./dist/
-      template: 'index.html', //Name of template in ./src
-      hash: true,
-    }),
-    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      disable: false,
+      chunkFilename: true,
     }),
   ],
 };

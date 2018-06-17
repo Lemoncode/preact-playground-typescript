@@ -1,9 +1,8 @@
 node_modules
 .DS_Store
+build/
 dist/
 es/
-gallery/dist/
-gallery/
 lib/
 *.orig
 .idea/
