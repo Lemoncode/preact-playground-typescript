@@ -25,7 +25,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 - Typings:
 
 ```
-npm install @types/webpack-env
+npm install @types/webpack-env --save-dev
 ```
 
 - Typescript
@@ -37,8 +37,7 @@ npm install typescript --save-dev
 - Babel configuration
 
 ```bash
-npm install babel-core babel-cli babel-plugin-transform-react-jsx babel-preset-env
-babel-preset-preact babel-preset-react --save-dev
+npm install babel-core babel-cli babel-plugin-transform-react-jsx babel-preset-env babel-preset-preact babel-preset-react --save-dev
 ```
 
 
@@ -51,13 +50,13 @@ npm install awesome-typescript-loader babel-core babel-loader css-loader file-lo
 - Webpack plugins and utils
 
 ```bash
-npm install copyfiles cross-env node-sass rimraf  --save-dev
+npm install copyfiles cross-env node-sass rimraf mini-css-extract-plugin html-webpack-plugin --save-dev
 ```
 
 - Let's install preact:
 
 ```bash
-npm install preact --save-dev
+npm install preact --save
 ```
 
 - Let's confiure typescript tsconfig file:
@@ -137,15 +136,12 @@ _./src/main.tsx_
 ```javascript
 import { h, render } from 'preact';
 import {Hello} from './hello';
-//const Hello = require('./hello.tsx');
-import {value} from './test'
-
 
 console.log(Hello);
 
 render((
     <div>
-        <h1>funciona?</h1>
+        <h1>Is it working, shold display 'Hello' ?</h1>
         <Hello/>
     </div>
 ), document.body);
@@ -154,7 +150,7 @@ render((
 
 - Let's add webpack configuration we are going to use ES6 sintax for this
 
-_./src/webpack.config.babel.json_
+_./src/webpack.config.babel.js_
 
 ```javascript
 import webpack from 'webpack';
@@ -236,11 +232,12 @@ export default {
 
 - Let's add some commands to our package.json
 
-```json
+```diff
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "rimraf dist && webpack --mode development",
-    "build:prod": "rimraf dist && webpack --mode production"
++    "start": "webpack-dev-server --mode development",
++    "build": "rimraf dist && webpack --mode development",
++    "build:prod": "rimraf dist && webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
 
