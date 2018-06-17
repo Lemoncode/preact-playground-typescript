@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": false,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "sourceMap": true,
+    "noLib": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowJs": true
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -9,7 +9,7 @@ Ensure you have installed nodejs at least version 8.1.1.
 
 # Steps
 
-- We will take as starting point sample _01 css_
+- We will take as starting point sample _01 simple lib_
 
 - Ensure you have installed the needed depencies from that sample:
 
