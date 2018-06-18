@@ -117,12 +117,12 @@ export default {
 _./prod.webpack.config.babel.js_
 
 ```javascript
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./base.webpack.config.babel.js');
-const CompressionPlugin = require('compression-webpack-plugin');
 import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
+import commonConfig from './base.webpack.config.babel.js';
+import CompressionPlugin from 'compression-webpack-plugin';
 
-module.exports = webpackMerge(commonConfig, {    
+const merged = webpackMerge(commonConfig, {    
   plugins: [
     new CompressionPlugin({
       asset: '[path].gz[query]',
@@ -133,6 +133,8 @@ module.exports = webpackMerge(commonConfig, {
     }),    
   ]
 });
+
+export default merged; 
 ```
 
 
@@ -142,19 +144,19 @@ module.exports = webpackMerge(commonConfig, {
 _./perf.webpack.config.babel.js_
 
 ```javascript
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./base.webpack.config.babel.js');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
+import commonConfig from './base.webpack.config.babel.js';
+import CompressionPlugin from 'compression-webpack-plugin';
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = webpackMerge.strategy({
-  entry: 'prepend',
-})(commonConfig, {    
+const merged = webpackMerge(commonConfig, {    
   plugins: [
     new BundleAnalyzerPlugin()
   ],
 });
+
+export default merged;
 ```
 
 - Let's update the package.json entries to use the correct one on each case and add the
@@ -175,7 +177,7 @@ _./package.json_
 +    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack --mode=development --config=base.webpack.config.babel.js",
 +    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --config=prod.webpack.config.babel.js -p",
 +    "build:umd:perf": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack --mode=production --config=perf.webpack.config.babel.js",
-+    "gallery": "npm run prepublish && webpack-dev-server --mode=development --openPage '/gallery' --config=prod.webpack.config.babel.js"
++    "gallery": "npm run prepublish && webpack-dev-server --mode=development --openPage '/gallery' --config=base.webpack.config.babel.js"
   },
 ```
 
