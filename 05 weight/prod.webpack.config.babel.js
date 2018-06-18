@@ -1,9 +1,9 @@
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./base.webpack.config.babel.js');
-const CompressionPlugin = require('compression-webpack-plugin');
 import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
+import commonConfig from './base.webpack.config.babel.js';
+import CompressionPlugin from 'compression-webpack-plugin';
 
-module.exports = webpackMerge(commonConfig, {    
+const merged = webpackMerge(commonConfig, {    
   plugins: [
     new CompressionPlugin({
       asset: '[path].gz[query]',
@@ -14,3 +14,7 @@ module.exports = webpackMerge(commonConfig, {
     }),    
   ]
 });
+
+export default merged; 
+
+

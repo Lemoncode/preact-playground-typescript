@@ -1,13 +1,16 @@
-const webpackMerge = require('webpack-merge');
-const commonConfig = require('./base.webpack.config.babel.js');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
+import commonConfig from './base.webpack.config.babel.js';
+import CompressionPlugin from 'compression-webpack-plugin';
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = webpackMerge.strategy({
+
+const merged = webpackMerge.strategy({
   entry: 'prepend',
 })(commonConfig, {    
   plugins: [
     new BundleAnalyzerPlugin()
   ],
 });
+
+export default merged;
